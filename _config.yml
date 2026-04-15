@@ -8,14 +8,17 @@ permalink: /item/:slug/
 plugins:
   - jekyll-paginate
   - jekyll-feed
+  - jekyll-sitemap
 feed:
-  path: feed
+  path: feed.xml
 paginate: 30
 paginate_path: /page:num/
 header_nav:
   links:
+    - label: Home
+      url: /
     - label: Feed
-      url: /feed
+      url: /feed.xml
     - label: About
       url: /about
     - label: Submit
