@@ -23,13 +23,13 @@ Feeds are checked every hour or so automatically, and new posts are added to the
 
 Create a GitHub issue in this repo with the feed URL and a brief description of the source. If your feed is accepted, it will be added to the webring and will start appearing on the homepage.
 
-If adding a GitHub issue is too much for you, you can also email the feed URL and a brief description to _submission<!--example.com-->@thechels.uk_.
+If adding a GitHub issue is too much for you, you can also email the feed URL and a brief description to _submission<!--example.com-->@nuchronic.uk_.
 
 Or by contacting [thechelsuk](https://links.thechels.uk) on social media.
 
 ## Removals
 
-If you would like your feed removed from Chronicle, please email _chronicle<!--example.com-->@nuchronic.uk_ and your request will be actioned as soon as adequate spoons allow.
+If you would like your feed removed from this site, please email _removals<!--example.com-->@nuchronic.uk_ and your request will be actioned as soon as adequate spoons allow.
 
 - We can remove an individual item, if it has also been removed from the source feed.
 - We can remove the feed entirely if you no longer want to be part of the webring that will stop future items being added.
