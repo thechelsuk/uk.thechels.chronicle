@@ -353,6 +353,10 @@ code {
   color: var(--text-dim);
 }
 
+.entry-body a {
+  color: var(--accent-soft);
+}
+
 .entry-body p {
   margin: 0 0 1rem;
 }
