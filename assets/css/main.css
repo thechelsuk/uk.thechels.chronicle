@@ -1,0 +1,374 @@
+:root {
+  --bg: #0b0d11;
+  --bg-strong: #07090c;
+  --surface: rgba(18, 21, 27, 0.96);
+  --surface-raised: rgba(24, 27, 34, 0.96);
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #d76f29;
+  --accent-soft: #ff9b5c;
+  --accent-deep: #1e1208;
+  --text: #f3efe7;
+  --text-dim: #c5baaa;
+  --text-faint: #8d8377;
+  --number: #6a645d;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.42);
+  --max-width: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+}
+
+.brand-mark svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: rgba(255, 255, 255, 0.14);
+  stroke: rgba(38, 22, 10, 0.72);
+  stroke-width: 1.5;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  background:
+    radial-gradient(circle at top left, rgba(255, 102, 0, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 22%),
+    linear-gradient(180deg, #141820 0%, #0b0d11 58%, #07090c 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 34px
+    );
+  opacity: 0.35;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-soft);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+
+code {
+  font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+  color: var(--accent-soft);
+}
+
+.page-shell {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 28px auto 56px;
+  padding: 0 16px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 10px;
+  color: #26160a;
+  background: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.site-title {
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 0.84rem;
+}
+
+.topnav a,
+.nav-muted {
+  opacity: 0.9;
+}
+
+.topnav .is-active {
+  opacity: 1;
+}
+
+.nav-separator {
+  opacity: 0.48;
+}
+
+.content-shell {
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--surface-raised), var(--surface));
+  border: 1px solid var(--border);
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+  box-shadow: var(--shadow);
+}
+
+.content-main {
+  min-width: 0;
+}
+
+.stories {
+  margin: 0;
+  padding: 12px 0 0;
+  list-style: none;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.story:first-child {
+  border-top: 0;
+}
+
+.story:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.story-rank {
+  padding: 4px 12px 0 0;
+  color: var(--number);
+  text-align: right;
+  font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.9rem;
+}
+
+.story-title {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.story-title a {
+  color: var(--text);
+}
+
+.story-meta,
+.entry-meta {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+.story-url {
+  overflow-wrap: anywhere;
+}
+
+.story-meta a,
+.entry-link a,
+.entry-kicker a {
+  color: var(--accent-soft);
+}
+
+.meta-separator {
+  margin: 0 8px;
+  color: var(--text-faint);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.84rem;
+}
+
+.pager-link {
+  color: var(--accent-soft);
+}
+
+.pager-status,
+.pager-end {
+  color: var(--text-faint);
+}
+
+.pager-spacer {
+  width: 3.5rem;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-faint);
+  font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.76rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.footer-copy {
+  white-space: nowrap;
+}
+
+.footer-notice {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.footer-nav a {
+  color: var(--accent-soft);
+}
+
+.footer-separator {
+  opacity: 0.48;
+}
+
+.empty-state,
+.entry-card {
+  padding: 30px 24px 34px;
+}
+
+.empty-state h1,
+.entry-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1.1;
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--text-dim);
+}
+
+.entry-kicker,
+.entry-link-label {
+  margin: 0 0 10px;
+  color: var(--text-faint);
+  font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.entry-link {
+  margin: 0;
+  font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+  word-break: break-all;
+}
+
+.entry-body {
+  max-width: 68ch;
+  margin-top: 24px;
+  color: var(--text-dim);
+}
+
+.entry-body p {
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    margin-top: 16px;
+    padding: 0 10px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 6px 8px;
+  }
+
+  .topnav {
+    margin-left: 0;
+  }
+
+  .story {
+    grid-template-columns: 38px 1fr;
+    padding: 12px 12px 14px 10px;
+  }
+
+  .story-rank {
+    padding-right: 8px;
+  }
+
+  .pagination {
+    padding: 14px 12px 18px;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 12px 16px;
+  }
+
+  .footer-notice {
+    text-align: left;
+  }
+
+  .empty-state,
+  .entry-card {
+    padding: 24px 16px 28px;
+  }
+}

@@ -1,0 +1,46 @@
+title: Chronicle
+description: Dark-mode Hacker News-style feed for the chronically ill indie web.
+url: ""
+baseurl: ""
+timezone: UTC
+markdown: kramdown
+permalink: /item/:slug/
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+feed:
+  path: feed
+paginate: 30
+paginate_path: /page:num/
+header_nav:
+  links:
+    - label: Feed
+      url: /feed
+    - label: About
+      url: /about
+    - label: Submit
+      url: https://github.com/thechelsuk/webring/issues/new
+footer_nav:
+  copyright: Chronicle
+  notice: The web ring for the chronically ill indie web.
+  year: 2026
+  links:
+    - label: thechelsuk
+      url: https://thechels.uk
+    - label: About
+      url: "/about"
+    - label: Terms
+      url: "/terms"
+    - label: Privacy
+      url: "/privacy"
+    - label: Sponsor
+      url: "https://github.com/sponsors/thechelsuk"
+    - label: Support with a ko-fi
+      url: "https://ko-fi.com/thechelsuk"
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: anonymous

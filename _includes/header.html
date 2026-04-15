@@ -1,0 +1,21 @@
+<header class="topbar">
+    <div class="brand-lockup">
+        <a class="brand-mark" href="{{ '/' | relative_url }}" aria-label="Go to the homepage">
+            <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                <rect x="1.5" y="1.5" width="17" height="17" rx="1.5"></rect>
+            </svg>
+        </a>
+        <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    </div>
+    {% if site.header_nav.links and site.header_nav.links.size > 0 %}
+    <nav class="topnav" aria-label="Primary navigation">
+        {% for item in site.header_nav.links %}
+        <a class="{% if item.url == '/' and page.layout == 'home' %}is-active{% endif %}"
+            href="{% if item.url contains '://' %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}">{{ item.label }}</a>
+        {% unless forloop.last %}
+        <span class="nav-separator">|</span>
+        {% endunless %}
+        {% endfor %}
+    </nav>
+    {% endif %}
+</header>

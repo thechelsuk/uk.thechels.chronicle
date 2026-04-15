@@ -1,0 +1,16 @@
+{% assign footer = site.footer_nav %}
+<footer class="site-footer">
+    <p class="footer-copy">&copy; {{ footer.year }} {{ footer.copyright }}.</p>
+    <p class="footer-notice">{{ footer.notice }}</p>
+    {% if footer.links and footer.links.size > 0 %}
+    <nav class="footer-nav" aria-label="Footer navigation">
+        {% for item in footer.links %}
+        <a
+            href="{% if item.url contains '://' %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}">{{ item.label }}</a>
+        {% unless forloop.last %}
+        <span class="footer-separator">|</span>
+        {% endunless %}
+        {% endfor %}
+    </nav>
+    {% endif %}
+</footer>

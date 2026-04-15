@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{% assign feed_posts = paginator.posts | default: site.posts %}
+{% assign offset = 0 %}
+{% if paginator and paginator.page %}
+{% assign offset = paginator.page | minus: 1 | times: paginator.per_page %}
+{% endif %}
+
+{% if feed_posts and feed_posts.size > 0 %}
+<ol class="stories" start="{{ offset | plus: 1 }}">
+    {% for post in feed_posts %}
+    {% assign story_rank = offset | plus: forloop.index %}
+    {% include story_item.html post=post rank=story_rank %}
+    {% endfor %}
+</ol>
+{% else %}
+<section class="empty-state">
+    <h1>No entries yet.</h1>
+    <p>Add feed-backed posts to <code>_posts/</code> and they will land here automatically.</p>
+</section>
+{% endif %}
+
+{% include pagination.html %}

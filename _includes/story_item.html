@@ -1,0 +1,22 @@
+<li class="story">
+    <div class="story-rank">{{ include.rank }}.</div>
+    <div class="story-body">
+        <h2 class="story-title">
+            {% if include.post.link %}
+            <a href="{{ include.post.link }}">{{ include.post.title }}</a>
+            {% else %}
+            <a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+            {% endif %}
+        </h2>
+        <p class="story-meta">
+            <time
+                datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%b %-d, %Y" }}</time>
+            <span class="meta-separator">·</span>
+            by {{ include.post.author | default: "anonymous" }}
+            {% if include.post.link %}
+            <span class="meta-separator">·</span>
+            <a class="story-url" href="{{ include.post.link }}">{{ include.post.link }}</a>
+            {% endif %}
+        </p>
+    </div>
+</li>
