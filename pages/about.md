@@ -8,7 +8,8 @@ Welcome into the webring! This is a dark-mode Hacker News-inspired feed for the 
 
 ## Rules
 
-- The webring is open to anyone who identifies as chronically ill but the content does not have to be relevant to chronic illness. - The webring is a place for the chronically ill to share and discover content that is relevant to them, regardless of the topic.
+- The webring is open to anyone who identifies as chronically ill but the content does not have to be relevant to chronic illness.
+- The webring is a place for the chronically ill to share and discover content that is relevant to them, regardless of the topic.
 
 ## How it works
 
