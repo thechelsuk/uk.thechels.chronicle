@@ -1,0 +1,181 @@
+name: Validate Feed Submissions
+
+on:
+    issues:
+        types:
+            - opened
+            - edited
+            - reopened
+
+permissions:
+    issues: write
+
+jobs:
+    validate:
+        if: contains(github.event.issue.body, '### ID / Name') && contains(github.event.issue.body, '### Feed URL')
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.11"
+
+            - name: Install validator dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install feedparser
+
+            - name: Extract issue form fields
+              id: extract
+              uses: actions/github-script@v7
+              env:
+                  ISSUE_BODY: ${{ github.event.issue.body }}
+              with:
+                  script: |
+                      const body = process.env.ISSUE_BODY || "";
+
+                      function extract(labelPattern) {
+                        const regex = new RegExp(`###\\s*${labelPattern}\\s*\\n+([\\s\\S]*?)(?=\\n###\\s|$)`, "i");
+                        const match = body.match(regex);
+                        return match ? match[1].trim() : "";
+                      }
+
+                      core.setOutput("source_id", extract("ID\\s*\\/\\s*Name"));
+                      core.setOutput("feed_url", extract("Feed URL"));
+
+            - name: Validate feed URL
+              id: validate
+              env:
+                  SOURCE_ID: ${{ steps.extract.outputs.source_id }}
+                  FEED_URL: ${{ steps.extract.outputs.feed_url }}
+              run: |
+                  python - <<'PY'
+                  import os
+                  from urllib.parse import urlparse
+
+                  import feedparser
+
+                  source_id = os.environ.get("SOURCE_ID", "").strip()
+                  feed_url = os.environ.get("FEED_URL", "").strip()
+                  output_path = os.environ["GITHUB_OUTPUT"]
+
+                  valid = "false"
+                  message = ""
+                  feed_title = ""
+
+                  if not source_id:
+                      message = "Missing ID / Name."
+                  elif not feed_url:
+                      message = "Missing Feed URL."
+                  else:
+                      parsed_url = urlparse(feed_url)
+                      if parsed_url.scheme not in {"http", "https"} or not parsed_url.netloc:
+                          message = "Feed URL must be a valid http or https URL."
+                      else:
+                          parsed_feed = feedparser.parse(feed_url)
+                          if getattr(parsed_feed, "bozo", 0) and not parsed_feed.entries:
+                              message = f"Could not parse the feed: {parsed_feed.bozo_exception}"
+                          elif not parsed_feed.entries:
+                              message = "The URL was reachable, but no feed items were found."
+                          else:
+                              valid = "true"
+                              feed_title = str(parsed_feed.feed.get("title", "")).strip()
+                              message = "Feed URL looks valid."
+
+                  with open(output_path, "a", encoding="utf-8") as output:
+                      output.write(f"valid={valid}\n")
+                      output.write(f"message<<EOF\n{message}\nEOF\n")
+                      output.write(f"feed_title<<EOF\n{feed_title}\nEOF\n")
+                  PY
+
+            - name: Upsert validation comment
+              uses: actions/github-script@v7
+              env:
+                  SOURCE_ID: ${{ steps.extract.outputs.source_id }}
+                  FEED_URL: ${{ steps.extract.outputs.feed_url }}
+                  FEED_TITLE: ${{ steps.validate.outputs.feed_title }}
+                  VALID: ${{ steps.validate.outputs.valid }}
+                  MESSAGE: ${{ steps.validate.outputs.message }}
+              with:
+                  script: |
+                      const marker = "<!-- feed-submission-validation -->";
+                      const sourceId = process.env.SOURCE_ID || "";
+                      const feedUrl = process.env.FEED_URL || "";
+                      const feedTitle = process.env.FEED_TITLE || "";
+                      const valid = process.env.VALID === "true";
+                      const message = process.env.MESSAGE || "";
+
+                      let body;
+                      if (valid) {
+                        const lines = [
+                          marker,
+                          "Feed check passed.",
+                          "",
+                          `- ID / Name: \`${sourceId}\``,
+                          `- Feed URL: ${feedUrl}`,
+                        ];
+
+                        if (feedTitle) {
+                          lines.push(`- Feed title: ${feedTitle}`);
+                        }
+
+                        lines.push("Assigned for review.");
+                        body = lines.join("\n");
+                      } else {
+                        body = [
+                          marker,
+                          "Feed check failed.",
+                          "",
+                          `Reason: ${message}`,
+                          "",
+                          "Please edit this issue and update the details.",
+                        ].join("\n");
+                      }
+
+                      const { owner, repo } = context.repo;
+                      const issue_number = context.issue.number;
+                      const comments = await github.paginate(github.rest.issues.listComments, {
+                        owner,
+                        repo,
+                        issue_number,
+                        per_page: 100,
+                      });
+
+                      const existing = comments.find(
+                        (comment) => comment.user?.type === "Bot" && comment.body?.includes(marker)
+                      );
+
+                      if (existing) {
+                        await github.rest.issues.updateComment({
+                          owner,
+                          repo,
+                          comment_id: existing.id,
+                          body,
+                        });
+                      } else {
+                        await github.rest.issues.createComment({
+                          owner,
+                          repo,
+                          issue_number,
+                          body,
+                        });
+                      }
+
+            - name: Assign repository owner
+              if: steps.validate.outputs.valid == 'true'
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const { owner, repo } = context.repo;
+                      const issue_number = context.issue.number;
+                      const currentAssignees = (context.payload.issue.assignees || []).map((assignee) => assignee.login);
+
+                      if (!currentAssignees.includes(owner)) {
+                        await github.rest.issues.addAssignees({
+                          owner,
+                          repo,
+                          issue_number,
+                          assignees: [owner],
+                        });
+                      }

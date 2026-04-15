@@ -1,0 +1,21 @@
+name: Feed Submission
+description: Submit a feed for inclusion in CHRONICLE.
+title: "[Feed Submission] "
+body:
+  - type: input
+    id: source_id
+    attributes:
+      label: ID / Name
+      description: A short stable id or name for this source.
+      placeholder: example-site
+    validations:
+      required: true
+
+  - type: input
+    id: feed_url
+    attributes:
+      label: Feed URL
+      description: A direct URL to the RSS or Atom feed.
+      placeholder: https://example.com/feed.xml
+    validations:
+      required: true

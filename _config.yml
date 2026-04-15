@@ -19,7 +19,7 @@ header_nav:
     - label: About
       url: /about
     - label: Submit
-      url: https://github.com/thechelsuk/webring/issues/new
+      url: https://github.com/thechelsuk/webring/issues/new?template=feed-submission.yml
 footer_nav:
   copyright: Chronicle
   notice: The web ring for the chronically ill indie web.
