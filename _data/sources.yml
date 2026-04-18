@@ -15,3 +15,6 @@ sources:
     feed_url: https://hillaryjohnson.substack.com/feed
   - id: Health-rising
     feed_url: https://www.healthrising.org/feed
+  - id: brennan-day
+    feed_url: https://brennan.day/feed.xml
+ 
