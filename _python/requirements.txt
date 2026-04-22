@@ -1,2 +1,2 @@
-feedparser>=6.0,<7.0
+feedparser>=6.0.12,<7.0
 PyYAML>=6.0,<7.0
