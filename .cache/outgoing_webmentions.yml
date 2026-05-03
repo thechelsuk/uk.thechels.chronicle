@@ -29,3 +29,14 @@ posts:
         status: success
         sent_at: '2026-05-03T13:23:31+00:00'
         response_status: 201
+  release-nuchronic-uk-version-1-1-0-263ed48b62:
+    source_url: https://nuchronic.uk/item/release-nuchronic-uk-version-1-1-0-263ed48b62/
+    targets:
+      https://thechels.uk/nuchronic-uk-release-2ab952c7e7c5:
+        target_url: https://thechels.uk/nuchronic-uk-release-2ab952c7e7c5
+        resolved_url: https://thechels.uk/nuchronic-uk-release-2ab952c7e7c5
+        updated_at: '2026-05-03T15:03:37+00:00'
+        endpoint: https://webmention.io/thechels.uk/webmention
+        status: success
+        sent_at: '2026-05-03T15:03:37+00:00'
+        response_status: 201

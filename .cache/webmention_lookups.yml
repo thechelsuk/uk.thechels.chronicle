@@ -8,3 +8,7 @@ targets:
     resolved_url: https://fed.brid.gy/
     endpoint: https://fed.brid.gy/webmention
     checked_at: '2026-05-03T13:43:42+00:00'
+  https://thechels.uk/nuchronic-uk-release-2ab952c7e7c5:
+    resolved_url: https://thechels.uk/nuchronic-uk-release-2ab952c7e7c5
+    endpoint: https://webmention.io/thechels.uk/webmention
+    checked_at: '2026-05-03T15:03:37+00:00'
