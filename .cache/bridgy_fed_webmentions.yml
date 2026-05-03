@@ -8,10 +8,12 @@ posts:
       updated_at: '2026-05-03T16:37:43+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:43+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:42+00:00'
   daily-daily-rundown-for-2026-05-03-ca35e16dda:
     source_url: https://nuchronic.uk/item/daily-daily-rundown-for-2026-05-03-ca35e16dda/
     bridgy:
@@ -20,10 +22,12 @@ posts:
       updated_at: '2026-05-03T16:37:44+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:45+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:44+00:00'
   announcing-my-new-radio-show-a-love-letter-to-public-access-television-91098c55ba:
     source_url: https://nuchronic.uk/item/announcing-my-new-radio-show-a-love-letter-to-public-access-television-91098c55ba/
     bridgy:
@@ -32,10 +36,12 @@ posts:
       updated_at: '2026-05-03T16:37:45+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:46+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:44+00:00'
   writers-who-burned-all-their-words-feat-bix-frankonis-d4e06d4ca6:
     source_url: https://nuchronic.uk/item/writers-who-burned-all-their-words-feat-bix-frankonis-d4e06d4ca6/
     bridgy:
@@ -44,10 +50,12 @@ posts:
       updated_at: '2026-05-03T16:37:46+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:47+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:44+00:00'
   sticky-nets-and-damaged-blood-vessels-a-long-covid-subset-is-born-fd519390d2:
     source_url: https://nuchronic.uk/item/sticky-nets-and-damaged-blood-vessels-a-long-covid-subset-is-born-fd519390d2/
     bridgy:
@@ -56,10 +64,12 @@ posts:
       updated_at: '2026-05-03T16:37:48+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:48+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:45+00:00'
   social-brand-6dc734630e:
     source_url: https://nuchronic.uk/item/social-brand-6dc734630e/
     bridgy:
@@ -68,10 +78,12 @@ posts:
       updated_at: '2026-05-03T16:37:50+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:50+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:45+00:00'
   release-nnw-theme-bundle-version-v1-6-2-da73f950a6:
     source_url: https://nuchronic.uk/item/release-nnw-theme-bundle-version-v1-6-2-da73f950a6/
     bridgy:
@@ -80,10 +92,12 @@ posts:
       updated_at: '2026-05-03T16:37:51+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:51+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:45+00:00'
   daily-daily-rundown-for-2026-05-02-a12e972d52:
     source_url: https://nuchronic.uk/item/daily-daily-rundown-for-2026-05-02-a12e972d52/
     bridgy:
@@ -92,10 +106,12 @@ posts:
       updated_at: '2026-05-03T16:37:52+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:52+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:46+00:00'
   research-pregnancy-in-me-cfs-stage-ii-funding-3a049979e6:
     source_url: https://nuchronic.uk/item/research-pregnancy-in-me-cfs-stage-ii-funding-3a049979e6/
     bridgy:
@@ -104,10 +120,12 @@ posts:
       updated_at: '2026-05-03T16:37:53+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:53+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:47+00:00'
   news-2026-may-1-415dcfa08e:
     source_url: https://nuchronic.uk/item/news-2026-may-1-415dcfa08e/
     bridgy:
@@ -116,10 +134,12 @@ posts:
       updated_at: '2026-05-03T16:37:55+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:55+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:47+00:00'
   dreamwidth-and-yearning-for-humanity-on-the-web-11ee6c3909:
     source_url: https://nuchronic.uk/item/dreamwidth-and-yearning-for-humanity-on-the-web-11ee6c3909/
     bridgy:
@@ -128,10 +148,12 @@ posts:
       updated_at: '2026-05-03T16:37:56+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:56+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:48+00:00'
   daily-daily-rundown-for-2026-05-01-250e5415f0:
     source_url: https://nuchronic.uk/item/daily-daily-rundown-for-2026-05-01-250e5415f0/
     bridgy:
@@ -140,10 +162,12 @@ posts:
       updated_at: '2026-05-03T16:37:58+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:59+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:48+00:00'
   15-minute-call-0594f274dc:
     source_url: https://nuchronic.uk/item/15-minute-call-0594f274dc/
     bridgy:
@@ -152,10 +176,12 @@ posts:
       updated_at: '2026-05-03T16:37:59+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:38:00+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:49+00:00'
   updated-booklet-doctors-how-to-establish-a-good-relationship-3e127bee74:
     source_url: https://nuchronic.uk/item/updated-booklet-doctors-how-to-establish-a-good-relationship-3e127bee74/
     bridgy:
@@ -164,10 +190,12 @@ posts:
       updated_at: '2026-05-03T16:38:00+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:38:01+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:50+00:00'
   press-release-have-your-say-pip-review-launches-engagement-programme-for-disable-4d05eb5d01:
     source_url: https://nuchronic.uk/item/press-release-have-your-say-pip-review-launches-engagement-programme-for-disable-4d05eb5d01/
     bridgy:
@@ -176,10 +204,12 @@ posts:
       updated_at: '2026-05-03T16:38:02+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:38:02+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:50+00:00'
   daily-daily-rundown-for-2026-04-30-e8cc700ed1:
     source_url: https://nuchronic.uk/item/daily-daily-rundown-for-2026-04-30-e8cc700ed1/
     bridgy:
@@ -188,10 +218,12 @@ posts:
       updated_at: '2026-05-03T16:38:04+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:38:04+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:50+00:00'
   video-games-that-secretly-teach-mathematics-a7139262d3:
     source_url: https://nuchronic.uk/item/video-games-that-secretly-teach-mathematics-a7139262d3/
     bridgy:
@@ -200,10 +232,12 @@ posts:
       updated_at: '2026-05-03T16:38:05+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:38:05+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:51+00:00'
   research-review-what-causes-long-covid-and-can-it-be-treated-cb361c46c7:
     source_url: https://nuchronic.uk/item/research-review-what-causes-long-covid-and-can-it-be-treated-cb361c46c7/
     bridgy:
@@ -212,10 +246,12 @@ posts:
       updated_at: '2026-05-03T16:38:08+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:38:08+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:52+00:00'
   linked-sourcefeed-a-pop-up-rss-service-launched-4e02b10348:
     source_url: https://nuchronic.uk/item/linked-sourcefeed-a-pop-up-rss-service-launched-4e02b10348/
     bridgy:
@@ -224,10 +260,12 @@ posts:
       updated_at: '2026-05-03T16:38:09+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:38:10+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:53+00:00'
   linked-passkeys-are-the-future-says-ncsc-3b406231d9:
     source_url: https://nuchronic.uk/item/linked-passkeys-are-the-future-says-ncsc-3b406231d9/
     bridgy:
@@ -246,7 +284,9 @@ posts:
       updated_at: '2026-05-03T16:37:42+00:00'
       endpoint: https://fed.brid.gy/webmention
       response_status: 202
-      status: accepted
+      status: success
       accepted_at: '2026-05-03T16:37:42+00:00'
       verified_targets:
       - ap
+      - bsky
+      verified_at: '2026-05-03T16:57:41+00:00'
