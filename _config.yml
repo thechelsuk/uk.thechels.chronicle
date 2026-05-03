@@ -20,6 +20,11 @@ webmentions:
 rel_me:
   - https://github.com/thechelsuk
   - https://web.brid.gy/nuchronic.uk
+  - https://ko-fi.com/thechelsuk
+  - https://thechels.uk
+  - https://nuchronic.uk
+  - https://github.com/sponsors/thechelsuk
+  -
 header_nav:
   links:
     - label: New

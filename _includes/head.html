@@ -30,6 +30,9 @@ endcapture %}
 <meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:image" content="{{ '/assets/icons/apple-touch-icon.png' | absolute_url }}">
 <meta name="twitter:card" content="summary">
+{% if page.layout == 'post' %}
+<link rel="alternate" type="application/activity+json" href="https://web.brid.gy/r/{{ canonical_url }}">
+{% endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link

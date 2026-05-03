@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 import re
@@ -34,6 +34,15 @@ USER_AGENT = "nuchronic-outgoing/1.0"
 MAX_HTML_BYTES = 512 * 1024
 LINK_HEADER_SPLIT_RE = re.compile(r",\s*(?=<)")
 DEFAULT_RETRY_RECENT = 20
+LOOKUP_CACHE_TTL = timedelta(hours=12)
+BAD_URI_CACHE_TTL = timedelta(hours=6)
+BRIDGY_ACCEPTED_RETRY_AFTER = timedelta(hours=2)
+BRIDGY_CONVERSION_ENDPOINTS = {
+    "ap": "https://web.brid.gy/convert/ap/",
+    "bsky": "https://web.brid.gy/convert/bsky/",
+}
+BRIDGY_REQUIRED_TARGETS = tuple(BRIDGY_CONVERSION_ENDPOINTS)
+OUTGOING_SOURCE_FORMAT_VERSION = 2
 
 
 class EndpointParser(HTMLParser):
@@ -61,6 +70,43 @@ class EndpointParser(HTMLParser):
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def parse_iso_timestamp(value: object) -> datetime | None:
+    raw_value = str(value or "").strip()
+    if not raw_value:
+        return None
+
+    if raw_value.endswith("Z"):
+        raw_value = f"{raw_value[:-1]}+00:00"
+
+    try:
+        parsed = datetime.fromisoformat(raw_value)
+    except ValueError:
+        return None
+
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def timestamp_is_fresh(value: object, max_age: timedelta) -> bool:
+    parsed = parse_iso_timestamp(value)
+    if parsed is None:
+        return False
+    return datetime.now(timezone.utc) - parsed <= max_age
+
+
+def normalize_targets(value: object) -> list[str]:
+    normalized: list[str] = []
+    if not isinstance(value, list):
+        return normalized
+
+    for item in value:
+        target = str(item or "").strip().lower()
+        if target and target in BRIDGY_CONVERSION_ENDPOINTS and target not in normalized:
+            normalized.append(target)
+    return normalized
 
 
 def clean_url(value: str) -> str:
@@ -197,16 +243,20 @@ def discover_webmention_endpoint(
 ) -> tuple[str, str, str]:
     target_key = clean_url(target_url)
     lookup_entry = lookups_cache["targets"].get(target_key)
-    if isinstance(lookup_entry, dict):
+    if isinstance(lookup_entry, dict) and timestamp_is_fresh(lookup_entry.get("checked_at"), LOOKUP_CACHE_TTL):
         endpoint = str(lookup_entry.get("endpoint", "")).strip()
         resolved_url = clean_url(str(lookup_entry.get("resolved_url", target_key)).strip()) or target_key
         if endpoint:
             return resolved_url, endpoint, "cached"
+    else:
+        lookups_cache["targets"].pop(target_key, None)
 
     bad_entry = bad_uris_cache["targets"].get(target_key)
-    if isinstance(bad_entry, dict):
+    if isinstance(bad_entry, dict) and timestamp_is_fresh(bad_entry.get("checked_at"), BAD_URI_CACHE_TTL):
         resolved_url = clean_url(str(bad_entry.get("resolved_url", target_key)).strip()) or target_key
         return resolved_url, "", str(bad_entry.get("reason", "cached-bad-uri")).strip() or "cached-bad-uri"
+    else:
+        bad_uris_cache["targets"].pop(target_key, None)
 
     response = request_url(target_key, accept="text/html,application/xhtml+xml,*/*;q=0.8")
     final_url = clean_url(response["url"]) or target_key
@@ -271,13 +321,41 @@ def has_successful_bridgy_delivery(bridgy_cache: dict[str, Any], slug: str) -> b
         return False
 
     bridgy_entry = post_entry.get("bridgy")
-    return isinstance(bridgy_entry, dict) and bridgy_entry.get("status") == "success"
+    if not isinstance(bridgy_entry, dict) or bridgy_entry.get("status") != "success":
+        return False
+
+    verified_targets = set(normalize_targets(bridgy_entry.get("verified_targets")))
+    return set(BRIDGY_REQUIRED_TARGETS).issubset(verified_targets)
+
+
+def verify_bridgy_delivery(source_url: str, existing_record: dict[str, Any] | None) -> tuple[bool, list[str], dict[str, str]]:
+    verified_targets = normalize_targets((existing_record or {}).get("verified_targets"))
+    verification_errors: dict[str, str] = {}
+
+    for target in BRIDGY_REQUIRED_TARGETS:
+        if target in verified_targets:
+            continue
+
+        verification_url = f"{BRIDGY_CONVERSION_ENDPOINTS[target]}{source_url}"
+        try:
+            response = request_url(verification_url, accept="application/json,*/*;q=0.1", timeout=15)
+        except RuntimeError as error:
+            verification_errors[target] = str(error)
+            continue
+
+        if 200 <= response["status"] < 300:
+            verified_targets.append(target)
+        elif response["status"] not in {404, 410}:
+            verification_errors[target] = f"HTTP {response['status']}"
+
+    normalized_verified_targets = [target for target in BRIDGY_REQUIRED_TARGETS if target in verified_targets]
+    is_verified = set(BRIDGY_REQUIRED_TARGETS).issubset(normalized_verified_targets)
+    return is_verified, normalized_verified_targets, verification_errors
 
 
 def collect_post_candidates(
     before_sha: str,
     current_sha: str,
-    bridgy_cache: dict[str, Any],
     retry_recent: int,
 ) -> list[tuple[Path, bool]]:
     candidates: list[tuple[Path, bool]] = []
@@ -292,7 +370,7 @@ def collect_post_candidates(
 
     for post_path in list_recent_post_paths(retry_recent):
         slug = derive_slug(post_path)
-        if slug in seen_slugs or has_successful_bridgy_delivery(bridgy_cache, slug):
+        if slug in seen_slugs:
             continue
         seen_slugs.add(slug)
         candidates.append((post_path, False))
@@ -311,7 +389,25 @@ def send_bridgy_fed_webmention(
 ) -> tuple[bool, int]:
     post_entry = ensure_post_entry(bridgy_cache, slug, source_url, "bridgy")
     existing = post_entry.get("bridgy")
-    if isinstance(existing, dict) and existing.get("status") == "success":
+    existing_record = existing if isinstance(existing, dict) else None
+    verified, verified_targets, verification_errors = verify_bridgy_delivery(source_url, existing_record)
+    if verified:
+        updated_record = dict(existing_record or {})
+        updated_record["target_url"] = BRIDGY_FED_TARGET
+        updated_record["resolved_url"] = clean_url(str(updated_record.get("resolved_url", BRIDGY_FED_TARGET)).strip()) or BRIDGY_FED_TARGET
+        updated_record["verified_targets"] = verified_targets
+        updated_record["verified_at"] = now_iso()
+        updated_record["status"] = "success"
+        if verification_errors:
+            updated_record["verification_errors"] = verification_errors
+        else:
+            updated_record.pop("verification_errors", None)
+
+        changed = updated_record != existing_record
+        post_entry["bridgy"] = updated_record
+        return changed, 0
+
+    if isinstance(existing_record, dict) and existing_record.get("status") == "accepted" and timestamp_is_fresh(existing_record.get("updated_at"), BRIDGY_ACCEPTED_RETRY_AFTER):
         return False, 0
 
     if dry_run:
@@ -338,13 +434,19 @@ def send_bridgy_fed_webmention(
     record["response_status"] = int(response["status"])
 
     if 200 <= response["status"] < 300:
-        record["status"] = "success"
-        record["sent_at"] = now_iso()
+        record["status"] = "accepted"
+        record["accepted_at"] = now_iso()
+        record["verified_targets"] = verified_targets
+        if verification_errors:
+            record["verification_errors"] = verification_errors
         post_entry["bridgy"] = record
-        print(f"Notified Bridgy Fed about {source_url}")
+        print(f"Queued Bridgy Fed notification for {source_url}")
         return True, 0
 
     record["status"] = "failed"
+    record["verified_targets"] = verified_targets
+    if verification_errors:
+        record["verification_errors"] = verification_errors
     record["error"] = excerpt(body_text) or f"HTTP {response['status']}"
     post_entry["bridgy"] = record
     print(f"Failed to notify Bridgy Fed about {source_url}: {record['error']}")
@@ -367,7 +469,9 @@ def send_outgoing_webmention(
 
     post_entry = ensure_post_entry(outgoing_cache, slug, source_url, "targets")
     existing = post_entry["targets"].get(cleaned_target)
-    if isinstance(existing, dict) and existing.get("status") == "success":
+    existing_record = existing if isinstance(existing, dict) else None
+    existing_format_version = int((existing_record or {}).get("source_format_version", 1) or 1)
+    if isinstance(existing_record, dict) and existing_record.get("status") == "success" and existing_format_version >= OUTGOING_SOURCE_FORMAT_VERSION:
         return False, 0
 
     if dry_run:
@@ -379,6 +483,7 @@ def send_outgoing_webmention(
         "target_url": cleaned_target,
         "resolved_url": resolved_url,
         "updated_at": now_iso(),
+        "source_format_version": OUTGOING_SOURCE_FORMAT_VERSION,
     }
 
     if not endpoint:
@@ -413,7 +518,7 @@ def process_posts(before_sha: str, current_sha: str, *, dry_run: bool, retry_rec
     outgoing_cache = load_yaml_map(OUTGOING_WEBMENTIONS_FILE, "posts")
     lookups_cache = load_yaml_map(LOOKUPS_FILE, "targets")
     bad_uris_cache = load_yaml_map(BAD_URIS_FILE, "targets")
-    candidates = collect_post_candidates(before_sha, current_sha, bridgy_cache, retry_recent)
+    candidates = collect_post_candidates(before_sha, current_sha, retry_recent)
     if not candidates:
         print("No new or retryable posts detected, skipping publication.")
         return 0
@@ -445,7 +550,7 @@ def process_posts(before_sha: str, current_sha: str, *, dry_run: bool, retry_rec
         any_changes = any_changes or changed
         failures += publish_failures
 
-        if is_new and source_link:
+        if source_link:
             changed, webmention_failures = send_outgoing_webmention(
                 slug,
                 source_url,

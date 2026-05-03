@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
+from html import unescape
 import hashlib
 from pathlib import Path
 import re
@@ -15,6 +16,8 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 SOURCES_FILE = ROOT / "_data" / "sources.yml"
 POSTS_DIR = ROOT / "_posts"
+HTML_TAG_PATTERN = re.compile(r"<[^>]+>")
+SUMMARY_LENGTH = 160
 
 
 def load_sources() -> list[dict[str, str]]:
@@ -105,6 +108,19 @@ def extract_author(entry: feedparser.FeedParserDict, feed_title: str, source_id:
     return source_id
 
 
+def extract_entry_summary(entry: feedparser.FeedParserDict) -> str:
+    for field_name in ("summary", "description"):
+        value = str(entry.get(field_name, "")).strip()
+        if value:
+            plain_text = unescape(HTML_TAG_PATTERN.sub(" ", value))
+            collapsed = " ".join(plain_text.split())
+            if len(collapsed) <= SUMMARY_LENGTH:
+                return collapsed
+            return f"{collapsed[: SUMMARY_LENGTH - 3].rstrip()}..."
+
+    return ""
+
+
 def extract_published_datetime(entry: feedparser.FeedParserDict) -> datetime | None:
     for field_name in ("published_parsed", "updated_parsed", "created_parsed"):
         parsed_value = entry.get(field_name)
@@ -164,8 +180,13 @@ def build_post_path(title: str, published_at: datetime, identity: str) -> Path:
     return POSTS_DIR / filename
 
 
-def write_post(post_path: Path, metadata: dict[str, str]) -> None:
+def write_post(post_path: Path, metadata: dict[str, str], body: str) -> None:
     front_matter = yaml.safe_dump(metadata, sort_keys=False, allow_unicode=True).strip()
+    normalized_body = body.strip()
+    if normalized_body:
+        post_path.write_text(f"---\n{front_matter}\n---\n{normalized_body}\n", encoding="utf-8")
+        return
+
     post_path.write_text(f"---\n{front_matter}\n---\n", encoding="utf-8")
 
 
@@ -209,6 +230,7 @@ def sync_source(source: dict[str, str], existing_links: set[str]) -> int:
 
     title = str(entry.get("title", "")).strip() or normalized_link
     author = extract_author(entry, feed_title, source_id)
+    body = extract_entry_summary(entry)
     identity = entry_identity(entry, published_at)
     post_path = build_post_path(title, published_at, identity)
 
@@ -232,6 +254,7 @@ def sync_source(source: dict[str, str], existing_links: set[str]) -> int:
             "author": author,
             "date": published_at.strftime("%Y-%m-%d %H:%M:%S %z"),
         },
+        body,
     )
     existing_links.add(normalized_link)
 

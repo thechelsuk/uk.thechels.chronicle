@@ -9,6 +9,15 @@ layout: default
 {% assign source_host = page.link | replace_first: 'https://', '' | replace_first: 'http://', '' | replace_first:
 'www.', '' | split: '/' | first | split: '?' | first | split: '#' | first %}
 {% endif %}
+{% assign has_article_body = false %}
+{% if body != '' %}
+{% assign has_article_body = true %}
+{% endif %}
+{% if has_article_body == false and page.link %}
+{% capture generated_body %}<p>Read the original article on <a href="{{ page.link }}">{{ source_host }}</a>.</p>{%
+endcapture %}
+{% assign has_article_body = true %}
+{% endif %}
 
 <article class="entry-card h-entry">
     <a class="u-url visually-hidden" href="{{ item_url }}">{{ item_url }}</a>
@@ -18,13 +27,7 @@ layout: default
         <img class="u-photo" src="{{ '/assets/icons/apple-touch-icon.png' | absolute_url }}" alt="{{ site.title }}">
     </span>
     <p class="entry-kicker"><a href="{{ '/' | relative_url }}">new</a></p>
-    <h1 class="entry-title p-name">
-        {% if page.link %}
-        <a class="u-bookmark-of" href="{{ page.link }}">{{ page.title }}</a>
-        {% else %}
-        {{ page.title }}
-        {% endif %}
-    </h1>
+    <h1 class="entry-title p-name">{{ page.title }}</h1>
     <p class="entry-meta">
         <time class="dt-published"
             datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
@@ -37,9 +40,16 @@ layout: default
         source <a href="{{ page.link }}" title="{{ page.link }}">{{ source_host }}</a>
         {% endif %}
     </p>
-    {% if body != "" %}
+    {% if has_article_body %}
     <div class="entry-body e-content">
+        {% if body != "" %}
         {{ content }}
+        {% if page.link %}
+        <p>Continue reading at <a href="{{ page.link }}">{{ source_host }}</a>.</p>
+        {% endif %}
+        {% else %}
+        {{ generated_body }}
+        {% endif %}
     </div>
     {% endif %}
     {% if mention_count > 0 %}
