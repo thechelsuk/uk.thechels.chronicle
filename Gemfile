@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.3.4"
+gem "jekyll", "~> 4.4.1"
 gem "ffi", "< 1.17"
 gem "jekyll-sass-converter", "< 3.0"
 
