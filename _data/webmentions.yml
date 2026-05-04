@@ -713,9 +713,25 @@ release-nuchronic-uk-version-1-1-0-263ed48b62:
   mentions: []
 daily-daily-rundown-for-2026-05-04-ac966f85f4:
   target: https://nuchronic.uk/item/daily-daily-rundown-for-2026-05-04-ac966f85f4/
-  count: 0
-  types: {}
+  count: 2
+  types:
+    like: 1
+    repost: 1
   replies: []
-  likes: []
-  reposts: []
+  likes:
+  - author_name: thechelsuk
+    author_url: https://bsky.app/profile/thechelsuk.eurosky.social
+    author_photo: https://avatars.webmention.io/eurosky.social/97b8fd9accc4f57610483650e566304f47512933b16ce1fc60b137cd8554666f.png
+    url: https://bsky.app/profile/did:plc:4g7cxas24xmyytrrrwbqy4yp/post/3mkzct3xkh4q2#liked_by_did:plc:dz7xwi7wgfyzk4oemurkomax
+    published: None
+    property: like-of
+    content_text: likes this.
+  reposts:
+  - author_name: thechelsuk
+    author_url: https://bsky.app/profile/thechelsuk.eurosky.social
+    author_photo: https://avatars.webmention.io/eurosky.social/97b8fd9accc4f57610483650e566304f47512933b16ce1fc60b137cd8554666f.png
+    url: https://bsky.app/profile/did:plc:4g7cxas24xmyytrrrwbqy4yp/post/3mkzct3xkh4q2#reposted_by_did:plc:dz7xwi7wgfyzk4oemurkomax
+    published: '2026-05-04T10:07:55+00:00'
+    property: repost-of
+    content_text: shared this.
   mentions: []
