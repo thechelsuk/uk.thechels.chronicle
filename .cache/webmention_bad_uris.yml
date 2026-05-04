@@ -4,31 +4,31 @@ targets:
     resolved_url: https://hillaryjohnson.substack.com/p/readers-remember-the-moment-theres
     reason: discovery-http-403
     checked_at: '2026-05-03T13:23:29+00:00'
-  https://colleensteckelmeiccinfo.substack.com/p/news-2026-may-1:
-    resolved_url: https://colleensteckelmeiccinfo.substack.com/p/news-2026-may-1
-    reason: discovery-http-403
-    checked_at: '2026-05-03T13:23:30+00:00'
   https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/:
     resolved_url: https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/
     reason: no-endpoint
-    checked_at: '2026-05-03T16:37:50+00:00'
+    checked_at: '2026-05-04T09:02:48+00:00'
   https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/:
     resolved_url: https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/
     reason: no-endpoint
-    checked_at: '2026-05-03T16:37:55+00:00'
+    checked_at: '2026-05-04T09:02:49+00:00'
+  https://colleensteckelmeiccinfo.substack.com/p/news-2026-may-1:
+    resolved_url: https://colleensteckelmeiccinfo.substack.com/p/news-2026-may-1
+    reason: discovery-http-403
+    checked_at: '2026-05-04T09:02:50+00:00'
   https://the-ensemblist.uk/15-minute-call:
     resolved_url: https://the-ensemblist.uk/15-minute-call
     reason: no-endpoint
-    checked_at: '2026-05-03T16:38:00+00:00'
+    checked_at: '2026-05-04T09:02:50+00:00'
   https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/:
     resolved_url: https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/
     reason: no-endpoint
-    checked_at: '2026-05-03T16:38:02+00:00'
+    checked_at: '2026-05-04T09:02:51+00:00'
   ? https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
   : resolved_url: https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
     reason: no-endpoint
-    checked_at: '2026-05-03T16:38:04+00:00'
+    checked_at: '2026-05-04T09:02:52+00:00'
   https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/:
     resolved_url: https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/
     reason: no-endpoint
-    checked_at: '2026-05-03T16:38:09+00:00'
+    checked_at: '2026-05-04T09:02:54+00:00'

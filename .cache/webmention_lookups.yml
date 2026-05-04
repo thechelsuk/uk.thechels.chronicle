@@ -4,10 +4,6 @@ targets:
     resolved_url: https://brennan.day/announcing-my-new-radio-show-a-love-letter-to-public-access-television/
     endpoint: https://webmention.io/brennan.day/webmention
     checked_at: '2026-05-03T13:23:31+00:00'
-  https://fed.brid.gy/:
-    resolved_url: https://fed.brid.gy/
-    endpoint: https://fed.brid.gy/webmention
-    checked_at: '2026-05-03T13:43:42+00:00'
   https://thechels.uk/nuchronic-uk-release-2ab952c7e7c5:
     resolved_url: https://thechels.uk/nuchronic-uk-release-2ab952c7e7c5
     endpoint: https://webmention.io/thechels.uk/webmention
@@ -24,10 +20,6 @@ targets:
     resolved_url: https://brennan.day/writers-who-burned-all-their-words-feat-bix-frankonis/
     endpoint: https://webmention.io/brennan.day/webmention
     checked_at: '2026-05-03T16:37:47+00:00'
-  https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/:
-    resolved_url: https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/
-    endpoint: ''
-    checked_at: '2026-05-03T16:37:50+00:00'
   https://thechels.uk/brand:
     resolved_url: https://thechels.uk/brand
     endpoint: https://webmention.io/thechels.uk/webmention
@@ -40,10 +32,6 @@ targets:
     resolved_url: https://thechels.uk/2026-05-02-daily-rundown
     endpoint: https://webmention.io/thechels.uk/webmention
     checked_at: '2026-05-03T16:37:52+00:00'
-  https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/:
-    resolved_url: https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/
-    endpoint: ''
-    checked_at: '2026-05-03T16:37:55+00:00'
   https://brennan.day/dreamwidth-and-yearning-for-humanity-on-the-web/:
     resolved_url: https://brennan.day/dreamwidth-and-yearning-for-humanity-on-the-web/
     endpoint: https://webmention.io/brennan.day/webmention
@@ -52,18 +40,6 @@ targets:
     resolved_url: https://thechels.uk/2026-05-01-daily-rundown
     endpoint: https://webmention.io/thechels.uk/webmention
     checked_at: '2026-05-03T16:37:59+00:00'
-  https://the-ensemblist.uk/15-minute-call:
-    resolved_url: https://the-ensemblist.uk/15-minute-call
-    endpoint: ''
-    checked_at: '2026-05-03T16:38:00+00:00'
-  https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/:
-    resolved_url: https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/
-    endpoint: ''
-    checked_at: '2026-05-03T16:38:02+00:00'
-  ? https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
-  : resolved_url: https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
-    endpoint: ''
-    checked_at: '2026-05-03T16:38:04+00:00'
   https://thechels.uk/2026-04-30-daily-rundown:
     resolved_url: https://thechels.uk/2026-04-30-daily-rundown
     endpoint: https://webmention.io/thechels.uk/webmention
@@ -72,11 +48,39 @@ targets:
     resolved_url: https://brennan.day/video-games-that-secretly-teach-mathematics/
     endpoint: https://webmention.io/brennan.day/webmention
     checked_at: '2026-05-03T16:38:07+00:00'
-  https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/:
-    resolved_url: https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/
-    endpoint: ''
-    checked_at: '2026-05-03T16:38:09+00:00'
   https://thechels.uk/sourcefeed-a-pop-up-rss-service-launched:
     resolved_url: https://thechels.uk/sourcefeed-a-pop-up-rss-service-launched
     endpoint: https://webmention.io/thechels.uk/webmention
     checked_at: '2026-05-03T16:38:10+00:00'
+  https://fed.brid.gy/:
+    resolved_url: https://fed.brid.gy/
+    endpoint: https://fed.brid.gy/webmention
+    checked_at: '2026-05-04T09:02:46+00:00'
+  https://thechels.uk/2026-05-04-daily-rundown:
+    resolved_url: https://thechels.uk/2026-05-04-daily-rundown
+    endpoint: https://webmention.io/thechels.uk/webmention
+    checked_at: '2026-05-04T09:02:47+00:00'
+  https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/:
+    resolved_url: https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/
+    endpoint: ''
+    checked_at: '2026-05-04T09:02:48+00:00'
+  https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/:
+    resolved_url: https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/
+    endpoint: ''
+    checked_at: '2026-05-04T09:02:49+00:00'
+  https://the-ensemblist.uk/15-minute-call:
+    resolved_url: https://the-ensemblist.uk/15-minute-call
+    endpoint: ''
+    checked_at: '2026-05-04T09:02:50+00:00'
+  https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/:
+    resolved_url: https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/
+    endpoint: ''
+    checked_at: '2026-05-04T09:02:51+00:00'
+  ? https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
+  : resolved_url: https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
+    endpoint: ''
+    checked_at: '2026-05-04T09:02:52+00:00'
+  https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/:
+    resolved_url: https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/
+    endpoint: ''
+    checked_at: '2026-05-04T09:02:54+00:00'

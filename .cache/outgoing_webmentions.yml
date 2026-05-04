@@ -15,7 +15,7 @@ posts:
       https://colleensteckelmeiccinfo.substack.com/p/news-2026-may-1:
         target_url: https://colleensteckelmeiccinfo.substack.com/p/news-2026-may-1
         resolved_url: https://colleensteckelmeiccinfo.substack.com/p/news-2026-may-1
-        updated_at: '2026-05-03T16:57:47+00:00'
+        updated_at: '2026-05-04T09:02:50+00:00'
         source_format_version: 2
         status: skipped
         reason: discovery-http-403
@@ -85,7 +85,7 @@ posts:
       https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/:
         target_url: https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/
         resolved_url: https://www.healthrising.org/blog/2026/05/02/blood-vessels-long-covid/
-        updated_at: '2026-05-03T16:57:45+00:00'
+        updated_at: '2026-05-04T09:02:48+00:00'
         source_format_version: 2
         status: skipped
         reason: no-endpoint
@@ -131,7 +131,7 @@ posts:
       https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/:
         target_url: https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/
         resolved_url: https://meassociation.org.uk/2026/05/research-pregnancy-in-me-cfs-stage-ii-funding/
-        updated_at: '2026-05-03T16:57:47+00:00'
+        updated_at: '2026-05-04T09:02:49+00:00'
         source_format_version: 2
         status: skipped
         reason: no-endpoint
@@ -165,7 +165,7 @@ posts:
       https://the-ensemblist.uk/15-minute-call:
         target_url: https://the-ensemblist.uk/15-minute-call
         resolved_url: https://the-ensemblist.uk/15-minute-call
-        updated_at: '2026-05-03T16:57:49+00:00'
+        updated_at: '2026-05-04T09:02:50+00:00'
         source_format_version: 2
         status: skipped
         reason: no-endpoint
@@ -175,7 +175,7 @@ posts:
       https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/:
         target_url: https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/
         resolved_url: https://meassociation.org.uk/2026/04/updated-booklet-doctors-how-to-establish-a-good-relationship/
-        updated_at: '2026-05-03T16:57:50+00:00'
+        updated_at: '2026-05-04T09:02:51+00:00'
         source_format_version: 2
         status: skipped
         reason: no-endpoint
@@ -185,7 +185,7 @@ posts:
       ? https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
       : target_url: https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
         resolved_url: https://meassociation.org.uk/2026/04/press-release-have-your-say-pip-review-launches-engagement-programme-for-disabled-people-to-get-involved/
-        updated_at: '2026-05-03T16:57:50+00:00'
+        updated_at: '2026-05-04T09:02:52+00:00'
         source_format_version: 2
         status: skipped
         reason: no-endpoint
@@ -219,7 +219,7 @@ posts:
       https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/:
         target_url: https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/
         resolved_url: https://meassociation.org.uk/2026/04/research-review-what-causes-long-covid-and-can-it-be-treated/
-        updated_at: '2026-05-03T16:57:52+00:00'
+        updated_at: '2026-05-04T09:02:54+00:00'
         source_format_version: 2
         status: skipped
         reason: no-endpoint
@@ -234,4 +234,16 @@ posts:
         endpoint: https://webmention.io/thechels.uk/webmention
         status: success
         sent_at: '2026-05-03T16:38:10+00:00'
+        response_status: 201
+  daily-daily-rundown-for-2026-05-04-ac966f85f4:
+    source_url: https://nuchronic.uk/item/daily-daily-rundown-for-2026-05-04-ac966f85f4/
+    targets:
+      https://thechels.uk/2026-05-04-daily-rundown:
+        target_url: https://thechels.uk/2026-05-04-daily-rundown
+        resolved_url: https://thechels.uk/2026-05-04-daily-rundown
+        updated_at: '2026-05-04T09:02:47+00:00'
+        source_format_version: 2
+        endpoint: https://webmention.io/thechels.uk/webmention
+        status: success
+        sent_at: '2026-05-04T09:02:47+00:00'
         response_status: 201
